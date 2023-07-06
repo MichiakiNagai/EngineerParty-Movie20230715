@@ -20,7 +20,8 @@ public class MyGameManager : MonoBehaviour
     public GameObject part_CountDown;
     public GameObject train;
 
-    public GameObject tunnel;
+    public GameObject tunnel_A;
+    public GameObject tunnel_B;
     public GameObject sus_Kyoto;
     public GameObject theater;
 
@@ -40,7 +41,8 @@ public class MyGameManager : MonoBehaviour
         {
             textList[i].SetActive(false);
         }
-        tunnel.SetActive(true);
+        tunnel_A.SetActive(true);
+        tunnel_B.SetActive(false);
         sus_Kyoto.SetActive(false);
         theater.SetActive(false);
     }
@@ -89,27 +91,34 @@ public class MyGameManager : MonoBehaviour
             train.SetActive(true);
             part_CountDown.SetActive(false);
 
-            if (51.2f <= time)
+            if (45.5f <= time)
             {
-                if (time < 65.0f)
+                tunnel_B.SetActive(true);
+
+                if (48.5f <= time)
                 {
-                    sus_Kyoto.SetActive(true);
-                    if (54.8f < time)
+                    tunnel_A.SetActive(false);
+
+                    if (51.0f <= time)
                     {
-                        tunnel.SetActive(false);
-                        theater.SetActive(true);
+                        sus_Kyoto.SetActive(true);
+
+                        if (time < 65.0f)
+                        {
+                            if (54.8f < time)
+                            {
+                                tunnel_B.SetActive(false);
+                                theater.SetActive(true);
+                            }
+                        }
+                        else
+                        {
+                            sus_Kyoto.SetActive(false);
+                        }
                     }
+                    
                 }
-                else
-                {
-                    sus_Kyoto.SetActive(false);
-                }
-                
-            }/*
-            else if (68.0f <= time)
-            {
-                sus_Kyoto.SetActive(false);
-            }*/
+            }
         }
         
         
