@@ -66,21 +66,29 @@ public class MyGameManager : MonoBehaviour
         {
             DisplayTexts(2);
         }
-        else if (45.00f <= time && time < 50.00f)
+        else if (45.00f <= time && time < 52.00f)
         {
             DisplayTexts(3);
-        }/*
-        else if (50.00f <= time && time < 50.00f)
-        {
-            DisplayTexts(4);
-        }*/
-        else if (53.00f <= time && time < 58.00f)
+        }
+        else if (52.00f <= time && time < 59.00f)
         {
             DisplayTexts(4);
         }
-        else if (61.50f <= time && time < 68.00f)
+        else if (59.00f <= time && time < 66.00f)
         {
             DisplayTexts(5);
+        }
+        else if (66.00f <= time && time < 73.00f)
+        {
+            DisplayTexts(6);
+        }
+        else if (73.00f <= time && time < 80.00f)
+        {
+            DisplayTexts(7);
+        }
+        else if (80.00f <= time/* && time < 85.00f*/)
+        {
+            DisplayTexts(8);
         }
     }
 
@@ -120,8 +128,7 @@ public class MyGameManager : MonoBehaviour
                 }
             }
         }
-        
-        
+
     }
 
     void DisplayTexts(int idx)
