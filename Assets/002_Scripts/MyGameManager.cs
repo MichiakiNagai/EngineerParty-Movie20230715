@@ -28,6 +28,7 @@ public class MyGameManager : MonoBehaviour
 
     public float time = -10.0f;
 
+    float exitCountDownTime = 25.20f;
     int text_i = 0;
 
     void Start()
@@ -39,6 +40,9 @@ public class MyGameManager : MonoBehaviour
         {
             textList[i].SetActive(false);
         }
+        tunnel.SetActive(true);
+        sus_Kyoto.SetActive(false);
+        theater.SetActive(false);
     }
 
     
@@ -48,19 +52,19 @@ public class MyGameManager : MonoBehaviour
 
         SwitchModels();
 
-        if (26.50f <= time && time < 34.00f)
+        if (exitCountDownTime <= time && time < 32.00f)
         {
             DisplayTexts(0);
         }
-        else if (34.00f <= time && time < 40.00f)
+        else if (32.00f <= time && time < 38.00f)
         {
             DisplayTexts(1);
         }
-        else if (40.00f <= time && time < 47.00f)
+        else if (38.00f <= time && time < 45.00f)
         {
             DisplayTexts(2);
         }
-        else if (47.00f <= time && time < 52.00f)
+        else if (45.00f <= time && time < 50.00f)
         {
             DisplayTexts(3);
         }/*
@@ -68,11 +72,11 @@ public class MyGameManager : MonoBehaviour
         {
             DisplayTexts(4);
         }*/
-        else if (55.00f <= time && time < 60.00f)
+        else if (53.00f <= time && time < 58.00f)
         {
             DisplayTexts(4);
         }
-        else if (63.50f <= time && time < 70.00f)
+        else if (61.50f <= time && time < 68.00f)
         {
             DisplayTexts(5);
         }
@@ -80,31 +84,35 @@ public class MyGameManager : MonoBehaviour
 
     void SwitchModels()
     {
-        if (26.5f < time)
+        if (exitCountDownTime < time)
         {
-            part_CountDown.SetActive(false);
             train.SetActive(true);
+            part_CountDown.SetActive(false);
 
-            if (time < 50.0f)
+            if (51.2f <= time)
             {
-                tunnel.SetActive(true);
-                sus_Kyoto.SetActive(false);
-                theater.SetActive(false);
-            }
-            else if (50.0f <= time && time < 70.0f)
-            {
-                sus_Kyoto.SetActive(true);
-                if (60.0f < time)
+                if (time < 65.0f)
                 {
-                    tunnel.SetActive(false);
-                    theater.SetActive(true);
+                    sus_Kyoto.SetActive(true);
+                    if (54.8f < time)
+                    {
+                        tunnel.SetActive(false);
+                        theater.SetActive(true);
+                    }
                 }
-            }
-            else if (70.0f <= time)
+                else
+                {
+                    sus_Kyoto.SetActive(false);
+                }
+                
+            }/*
+            else if (68.0f <= time)
             {
                 sus_Kyoto.SetActive(false);
-            }
+            }*/
         }
+        
+        
     }
 
     void DisplayTexts(int idx)
