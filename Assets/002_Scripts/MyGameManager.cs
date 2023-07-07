@@ -19,6 +19,7 @@ public class MyGameManager : MonoBehaviour
 
     public GameObject part_CountDown;
     public GameObject train;
+//    public GameObject presidentVoice;
 
     public GameObject tunnel_A;
     public GameObject tunnel_B;
@@ -37,10 +38,13 @@ public class MyGameManager : MonoBehaviour
         part_CountDown.SetActive(true);
         train.SetActive(false);
 
+        ResetArrayCondition(textList, false);
+        /*
         for (int i = 0; i < textList.Length; i++)
         {
             textList[i].SetActive(false);
         }
+        */
         tunnel_A.SetActive(true);
         tunnel_B.SetActive(false);
         sus_Kyoto.SetActive(false);
@@ -53,7 +57,61 @@ public class MyGameManager : MonoBehaviour
         time = Time.time;
 
         SwitchModels();
+        TimingUIProcess();
 
+
+    }
+
+    public void ResetArrayCondition(GameObject[] array, bool flag)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i].SetActive(flag);
+        }
+    }
+
+    void SwitchModels()
+    {
+        if (exitCountDownTime < time)
+        {
+            train.SetActive(true);
+//            presidentVoice.SetActive(true);
+            part_CountDown.SetActive(false);
+
+            if (45.5f <= time)
+            {
+                tunnel_B.SetActive(true);
+
+                if (48.5f <= time)
+                {
+                    tunnel_A.SetActive(false);
+
+                    if (51.0f <= time)
+                    {
+                        sus_Kyoto.SetActive(true);
+
+                        if (time < 65.0f)
+                        {
+                            if (54.8f < time)
+                            {
+                                tunnel_B.SetActive(false);
+                                theater.SetActive(true);
+                            }
+                        }
+                        else
+                        {
+                            sus_Kyoto.SetActive(false);
+                        }
+                    }
+                    
+                }
+            }
+        }
+
+    }
+
+    public void TimingUIProcess()
+    {
         if (exitCountDownTime <= time && time < 32.00f)
         {
             DisplayTexts(0);
@@ -90,45 +148,6 @@ public class MyGameManager : MonoBehaviour
         {
             DisplayTexts(8);
         }
-    }
-
-    void SwitchModels()
-    {
-        if (exitCountDownTime < time)
-        {
-            train.SetActive(true);
-            part_CountDown.SetActive(false);
-
-            if (45.5f <= time)
-            {
-                tunnel_B.SetActive(true);
-
-                if (48.5f <= time)
-                {
-                    tunnel_A.SetActive(false);
-
-                    if (51.0f <= time)
-                    {
-                        sus_Kyoto.SetActive(true);
-
-                        if (time < 65.0f)
-                        {
-                            if (54.8f < time)
-                            {
-                                tunnel_B.SetActive(false);
-                                theater.SetActive(true);
-                            }
-                        }
-                        else
-                        {
-                            sus_Kyoto.SetActive(false);
-                        }
-                    }
-                    
-                }
-            }
-        }
-
     }
 
     void DisplayTexts(int idx)
