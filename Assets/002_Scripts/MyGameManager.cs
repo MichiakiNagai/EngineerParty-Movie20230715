@@ -28,12 +28,15 @@ public class MyGameManager : MonoBehaviour
 
     public GameObject[] textList;
 
+    public Animator cameraAnimator;
+
     public float time = -10.0f;
 
     float exitCountDownTime = 25.20f;
     int text_i = 0;
 
-    bool istunnel_B_ONflag = false;
+    bool istunnel_B_ON_Flag = false;
+    string isArrived_AnimationFlag = "isArrived";
 
     void Start()
     {
@@ -58,9 +61,15 @@ public class MyGameManager : MonoBehaviour
     {
         time = Time.time;
 
-        SwitchModels();
-        TimingUIProcess();
-
+        if (time < 78.0f)
+        {
+            SwitchModels();
+            TimingUIProcess();
+        }
+        else
+        {
+            cameraAnimator.SetBool(isArrived_AnimationFlag, true);
+        }
 
     }
 
@@ -82,10 +91,10 @@ public class MyGameManager : MonoBehaviour
 
             if (45.5f <= time)
             {
-                if (!istunnel_B_ONflag)
+                if (!istunnel_B_ON_Flag)
                 {
                     tunnel_B.SetActive(true);
-                    istunnel_B_ONflag = true;
+                    istunnel_B_ON_Flag = true;
                 }
 
                 if (48.5f <= time)
@@ -150,10 +159,11 @@ public class MyGameManager : MonoBehaviour
         {
             DisplayTexts(7);
         }
-        else if (80.00f <= time/* && time < 85.00f*/)
+        /*
+        else if (80.00f <= time && time < 85.00f)
         {
             DisplayTexts(8);
-        }
+        }*/
     }
 
     void DisplayTexts(int idx)
