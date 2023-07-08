@@ -21,6 +21,7 @@ public class MyGameManager : MonoBehaviour
     public GameObject train;
 //    public GameObject presidentVoice;
 
+    public GameObject seto_Bridge;
     public GameObject tunnel_A;
     public GameObject tunnel_B;
     public GameObject sus_Kyoto;
@@ -89,36 +90,41 @@ public class MyGameManager : MonoBehaviour
 //            presidentVoice.SetActive(true);
             part_CountDown.SetActive(false);
 
-            if (45.5f <= time)
+            if (39.5f <= time)
             {
-                if (!istunnel_B_ON_Flag)
-                {
-                    tunnel_B.SetActive(true);
-                    istunnel_B_ON_Flag = true;
-                }
+                seto_Bridge.SetActive(false);
 
-                if (48.5f <= time)
+                if (45.5f <= time)
                 {
-                    tunnel_A.SetActive(false);
-
-                    if (51.0f <= time)
+                    if (!istunnel_B_ON_Flag)
                     {
-                        sus_Kyoto.SetActive(true);
+                        tunnel_B.SetActive(true);
+                        istunnel_B_ON_Flag = true;
+                    }
 
-                        if (time < 65.0f)
+                    if (51.5f <= time)
+                    {
+                        tunnel_A.SetActive(false);
+
+                        if (53.0f <= time)
                         {
-                            if (54.8f < time)
+                            sus_Kyoto.SetActive(true);
+
+                            if (time < 70.0f)
                             {
-                                tunnel_B.SetActive(false);
-                                telsaHall.SetActive(true);
+                                if (57.8f < time)
+                                {
+                                    tunnel_B.SetActive(false);
+                                    telsaHall.SetActive(true);
+                                }
+                            }
+                            else
+                            {
+                                sus_Kyoto.SetActive(false);
                             }
                         }
-                        else
-                        {
-                            sus_Kyoto.SetActive(false);
-                        }
+
                     }
-                    
                 }
             }
         }
