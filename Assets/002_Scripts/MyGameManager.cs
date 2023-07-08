@@ -24,7 +24,7 @@ public class MyGameManager : MonoBehaviour
     public GameObject tunnel_A;
     public GameObject tunnel_B;
     public GameObject sus_Kyoto;
-    public GameObject theater;
+    public GameObject telsaHall;
 
     public GameObject[] textList;
 
@@ -32,6 +32,8 @@ public class MyGameManager : MonoBehaviour
 
     float exitCountDownTime = 25.20f;
     int text_i = 0;
+
+    bool istunnel_B_ONflag = false;
 
     void Start()
     {
@@ -48,7 +50,7 @@ public class MyGameManager : MonoBehaviour
         tunnel_A.SetActive(true);
         tunnel_B.SetActive(false);
         sus_Kyoto.SetActive(false);
-        theater.SetActive(false);
+        telsaHall.SetActive(false);
     }
 
     
@@ -80,7 +82,11 @@ public class MyGameManager : MonoBehaviour
 
             if (45.5f <= time)
             {
-                tunnel_B.SetActive(true);
+                if (!istunnel_B_ONflag)
+                {
+                    tunnel_B.SetActive(true);
+                    istunnel_B_ONflag = true;
+                }
 
                 if (48.5f <= time)
                 {
@@ -95,7 +101,7 @@ public class MyGameManager : MonoBehaviour
                             if (54.8f < time)
                             {
                                 tunnel_B.SetActive(false);
-                                theater.SetActive(true);
+                                telsaHall.SetActive(true);
                             }
                         }
                         else
