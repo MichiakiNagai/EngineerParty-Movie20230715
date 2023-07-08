@@ -18,6 +18,7 @@ public class MyGameManager : MonoBehaviour
     #endregion Singleton
 
     public GameObject part_CountDown;
+    public GameObject part_Title;
     public GameObject train;
 //    public GameObject presidentVoice;
 
@@ -33,7 +34,8 @@ public class MyGameManager : MonoBehaviour
 
     public float time = -10.0f;
 
-    float exitCountDownTime = 25.20f;
+    float exitCountDownTime = 30.20f;  // è]óàtime(25.20f) ÇÊÇË +5.0f ÇµÇΩÇ™ÅAÇ‡Ç§ +5.0f Ç…ÇµÇΩï˚Ç™ÇÊÇ¢Ç©Ç‡
+    float switchModelTime = 44.5f;
     int text_i = 0;
 
     bool istunnel_B_ON_Flag = false;
@@ -42,15 +44,10 @@ public class MyGameManager : MonoBehaviour
     void Start()
     {
         part_CountDown.SetActive(true);
+        part_Title.SetActive(false);
         train.SetActive(false);
 
         ResetArrayCondition(textList, false);
-        /*
-        for (int i = 0; i < textList.Length; i++)
-        {
-            textList[i].SetActive(false);
-        }
-        */
         tunnel_A.SetActive(true);
         tunnel_B.SetActive(false);
         sus_Kyoto.SetActive(false);
@@ -62,8 +59,14 @@ public class MyGameManager : MonoBehaviour
     {
         time = Time.time;
 
-        if (time < 78.0f)
+        if (exitCountDownTime -5.0f < time && time < exitCountDownTime)
         {
+            part_CountDown.SetActive(false);
+            part_Title.SetActive(true);
+        }
+        else if (exitCountDownTime < time && time < 83.0f)
+        {
+            part_Title.SetActive(false);
             SwitchModels();
             TimingUIProcess();
         }
@@ -84,17 +87,17 @@ public class MyGameManager : MonoBehaviour
 
     void SwitchModels()
     {
-        if (exitCountDownTime < time)
+        if (exitCountDownTime < time)  // 30.20f
         {
             train.SetActive(true);
 //            presidentVoice.SetActive(true);
             part_CountDown.SetActive(false);
 
-            if (39.5f <= time)
+            if (switchModelTime <= time)  // 44.50f
             {
                 seto_Bridge.SetActive(false);
 
-                if (45.5f <= time)
+                if (switchModelTime +10.50f <= time) // 55.0f
                 {
                     if (!istunnel_B_ON_Flag)
                     {
@@ -102,17 +105,17 @@ public class MyGameManager : MonoBehaviour
                         istunnel_B_ON_Flag = true;
                     }
 
-                    if (51.5f <= time)
+                    if (switchModelTime + 12.00f <= time)  // 56.5f
                     {
                         tunnel_A.SetActive(false);
 
-                        if (53.0f <= time)
+                        if (switchModelTime + 13.50f <= time)  // 58.0f
                         {
                             sus_Kyoto.SetActive(true);
 
-                            if (time < 70.0f)
+                            if (time < switchModelTime + 30.50f)  // 75.0f
                             {
-                                if (57.8f < time)
+                                if (switchModelTime + 18.30f < time)  // 62.8f
                                 {
                                     tunnel_B.SetActive(false);
                                     telsaHall.SetActive(true);
@@ -133,35 +136,35 @@ public class MyGameManager : MonoBehaviour
 
     public void TimingUIProcess()
     {
-        if (exitCountDownTime <= time && time < 32.00f)
+        if (exitCountDownTime <= time && time < 37.00f)
         {
             DisplayTexts(0);
         }
-        else if (32.00f <= time && time < 38.00f)
+        else if (37.00f <= time && time < 43.00f)
         {
             DisplayTexts(1);
         }
-        else if (38.00f <= time && time < 45.00f)
+        else if (43.00f <= time && time < 50.00f)
         {
             DisplayTexts(2);
         }
-        else if (45.00f <= time && time < 52.00f)
+        else if (50.00f <= time && time < 57.00f)
         {
             DisplayTexts(3);
         }
-        else if (52.00f <= time && time < 59.00f)
+        else if (57.00f <= time && time < 64.00f)
         {
             DisplayTexts(4);
         }
-        else if (59.00f <= time && time < 66.00f)
+        else if (64.00f <= time && time < 71.00f)
         {
             DisplayTexts(5);
         }
-        else if (66.00f <= time && time < 73.00f)
+        else if (71.00f <= time && time < 78.00f)
         {
             DisplayTexts(6);
         }
-        else if (73.00f <= time && time < 80.00f)
+        else if (78.00f <= time && time < 85.00f)
         {
             DisplayTexts(7);
         }
