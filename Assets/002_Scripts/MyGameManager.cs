@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MyGameManager : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class MyGameManager : MonoBehaviour
         }
     }
     #endregion Singleton
-
+    #region DefObj
     public GameObject part_CountDown;
     public GameObject part_Title;
     public GameObject train;
@@ -42,6 +43,7 @@ public class MyGameManager : MonoBehaviour
 
     bool istunnel_B_ON_Flag = false;
     string isArrived_AnimationFlag = "isArrived";
+    #endregion DefObj
 
     void Start()
     {
