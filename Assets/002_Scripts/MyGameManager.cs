@@ -68,7 +68,7 @@ public class MyGameManager : MonoBehaviour
             part_CountDown.SetActive(false);
             part_Title.SetActive(true);
         }
-        else if (exitCountDownTime + 5.0f < time && time < 89.0f)
+        else if (exitCountDownTime + 5.0f < time && time < 85.0f)
         {
             part_Title.SetActive(false);
             SwitchModels();
@@ -97,11 +97,11 @@ public class MyGameManager : MonoBehaviour
 //            presidentVoice.SetActive(true);
             part_CountDown.SetActive(false);
 
-            if (switchModelTime <= time)  // 49.50f
+            if (switchModelTime +4.0f <= time)  // 49.50f
             {
                 seto_Bridge.SetActive(false);
 
-                if (switchModelTime +10.50f <= time) // 60.00f
+                if (switchModelTime +10.00f <= time) // 59.50f
                 {
                     if (!istunnel_B_ON_Flag)
                     {
