@@ -36,16 +36,19 @@ public class MyGameManager : MonoBehaviour
 
     public GameObject selfFader;
     public Animator cameraAnimator;
+    public Animator markOkayamaAnimator;
     public AudioSource MainTrainSE;
     public AudioSource bridgeSE;
 
     public float time = -10.0f;
 
     float exitCountDownTime = 30.20f;  // è]óàtime(25.20f) ÇÊÇË +5.0f ÇµÇΩ
-    float switchModelTime = 49.50f;
+    float jumpingOkayamaPanelTime = 49.50f;
+    float switchModelTime = 53.50f;
     int text_i = 0;
 
     bool istunnel_B_ON_Flag = false;
+    string isJump_AnimationFlag = "Jump";
     string isArrived_AnimationFlag = "isArrived";
     #endregion DefObj
 
@@ -77,10 +80,14 @@ public class MyGameManager : MonoBehaviour
         else if (exitCountDownTime + 5.0f < time && time < 85.0f)
         {
             part_Title.SetActive(false);
+            if (jumpingOkayamaPanelTime < time)
+            {
+                markOkayamaAnimator.SetBool(isJump_AnimationFlag, true);
+            }
             SwitchModels();
             TimingUIProcess();
         }
-        else
+        else  // 85.0 ïbà»è„
         {
             cameraAnimator.SetBool(isArrived_AnimationFlag, true);
         }
@@ -103,11 +110,11 @@ public class MyGameManager : MonoBehaviour
 //            presidentVoice.SetActive(true);
             part_CountDown.SetActive(false);
 
-            if (switchModelTime +4.0f <= time)  // 49.50f
+            if (switchModelTime <= time)  // 53.50f
             {
                 seto_Bridge.SetActive(false);
 
-                if (switchModelTime +10.00f <= time) // 59.50f
+                if (switchModelTime + 6.00f <= time) // 59.50f
                 {
                     if (!istunnel_B_ON_Flag)
                     {
@@ -115,17 +122,17 @@ public class MyGameManager : MonoBehaviour
                         istunnel_B_ON_Flag = true;
                     }
 
-                    if (switchModelTime + 12.00f <= time)  // 61.50f
+                    if (switchModelTime + 8.00f <= time)  // 61.50f
                     {
                         tunnel_A.SetActive(false);
 
-                        if (switchModelTime + 13.50f <= time)  // 63.00f
+                        if (switchModelTime + 9.50f <= time)  // 63.00f
                         {
                             sus_Kyoto.SetActive(true);
 
-                            if (time < switchModelTime + 30.50f)  // 80.00f
+                            if (time < switchModelTime + 26.50f)  // 80.00f
                             {
-                                if (switchModelTime + 18.30f < time)  // 67.80f
+                                if (switchModelTime + 14.30f < time)  // 67.80f
                                 {
                                     tunnel_B.SetActive(false);
                                     telsaHall.SetActive(true);
