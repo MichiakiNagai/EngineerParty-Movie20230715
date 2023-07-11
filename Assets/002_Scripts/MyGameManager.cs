@@ -18,19 +18,23 @@ public class MyGameManager : MonoBehaviour
     }
     #endregion Singleton
     #region DefObj
+
+    #region MainObj
     public GameObject part_CountDown;
     public GameObject part_Title;
     public GameObject train;
-//    public GameObject presidentVoice;
-
+    //    public GameObject presidentVoice;
+    #endregion MainObj
+    #region PartObj
     public GameObject seto_Bridge;
     public GameObject tunnel_A;
     public GameObject tunnel_B;
     public GameObject sus_Kyoto;
     public GameObject telsaHall;
-
+    #endregion PartObj
     public GameObject[] textList;
 
+    public GameObject selfFader;
     public Animator cameraAnimator;
     public AudioSource MainTrainSE;
     public AudioSource bridgeSE;
@@ -56,6 +60,8 @@ public class MyGameManager : MonoBehaviour
         tunnel_B.SetActive(false);
         sus_Kyoto.SetActive(false);
         telsaHall.SetActive(false);
+
+//        selfFader.SetActive(true);  // ONし忘れ防止：カメラ位置変更によりPosition再調整必要
     }
 
     
