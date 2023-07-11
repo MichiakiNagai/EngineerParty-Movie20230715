@@ -34,7 +34,10 @@ public class MyGameManager : MonoBehaviour
     #endregion PartObj
     public GameObject[] textList;
 
+    public GameObject shachoWithTrain;
     public GameObject selfFader;
+    public GameObject worldCanvas;
+    public Animator shachoAnimator;
     public Animator cameraAnimator;
     public Animator markOkayamaAnimator;
     public AudioSource MainTrainSE;
@@ -49,7 +52,10 @@ public class MyGameManager : MonoBehaviour
 
     bool istunnel_B_ON_Flag = false;
     string isJump_AnimationFlag = "Jump";
+    string isEscape_AnimationFlag = "isEscape";
     string isArrived_AnimationFlag = "isArrived";
+    string isZooming_AnimationFlag = "isZooming";
+    string isFinal_AnimationFlag = "isFinal";
     #endregion DefObj
 
     void Start()
@@ -87,9 +93,39 @@ public class MyGameManager : MonoBehaviour
             SwitchModels();
             TimingUIProcess();
         }
-        else  // 85.0 ïbà»è„
+        else if(85.00f < time) // 85.0 ïbà»è„
         {
-            cameraAnimator.SetBool(isArrived_AnimationFlag, true);
+            worldCanvas.SetActive(false);
+            shachoAnimator.SetBool(isEscape_AnimationFlag, true);
+
+            if (94.00f < time)
+            {
+                cameraAnimator.SetBool(isFinal_AnimationFlag, true);
+            }
+            else if (90.00f < time)
+            {
+                cameraAnimator.SetBool(isZooming_AnimationFlag, true);
+            }
+            else if (87.00f < time)
+            {
+                shachoWithTrain.SetActive(false);
+                cameraAnimator.SetBool(isArrived_AnimationFlag, true);
+            }
+            /*
+            if (86.00f < time)
+            {
+                worldCanvas.SetActive(false);
+                cameraAnimator.SetBool(isArrived_AnimationFlag, true);
+            }
+            if (89.00f < time)
+            {
+                cameraAnimator.SetBool(isZooming_AnimationFlag, true);
+            }
+            if (93.00f < time)
+            {
+                cameraAnimator.SetBool(isFinal_AnimationFlag, true);
+            }
+            */
         }
 
     }
