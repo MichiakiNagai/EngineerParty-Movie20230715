@@ -36,6 +36,7 @@ public class MyGameManager : MonoBehaviour
 
 //    public GameObject shachoWithTrain;
     public GameObject selfFader;
+//    public GameObject fadeOut;
     public GameObject mainGuide;
     public GameObject shachoComment001;
     public GameObject shachoComment002;
@@ -76,6 +77,7 @@ public class MyGameManager : MonoBehaviour
         shachoComment002.SetActive(false);
         shachoVoice002.SetActive(false);
         shachoVoice002.SetActive(false);
+//        fadeOut.SetActive(false);
 //        endScreenColor = endSlide.GetComponent<MeshRenderer>();
 //        endSlide.SetActive(false);
 //        selfFader.SetActive(true);  // ONし忘れ防止：カメラ位置変更によりPosition再調整必要
@@ -106,10 +108,15 @@ public class MyGameManager : MonoBehaviour
 //            shachoAnimator.SetBool(isEscape_AnimationFlag, true);
 
             // 106.0f でおしまい
-            if (100.00f < time)
+            if (103.00f < time)
+            {
+//                fadeOut.SetActive(true);
+                cameraAnimator.SetBool("isFadeOut", true);
+            }
+            else if (98.00f < time)
             {
                 cameraAnimator.SetBool("isEnd", true);
-                mainBGM.volume -= Time.deltaTime * 0.1f;
+                mainBGM.volume -= Time.deltaTime * 0.2f;
             }
             else if (94.00f < time)
             {
