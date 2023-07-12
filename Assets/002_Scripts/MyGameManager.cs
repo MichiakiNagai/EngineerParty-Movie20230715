@@ -34,9 +34,7 @@ public class MyGameManager : MonoBehaviour
     #endregion PartObj
     public GameObject[] textList;
 
-//    public GameObject shachoWithTrain;
     public GameObject selfFader;
-//    public GameObject fadeOut;
     public GameObject mainGuide;
     public GameObject shachoComment001;
     public GameObject shachoComment002;
@@ -51,12 +49,12 @@ public class MyGameManager : MonoBehaviour
     public float time = -10.0f;
 
     float exitCountDownTime = 30.20f;  // ]—ˆtime(25.20f) ‚æ‚è +5.0f ‚µ‚½
-    float jumpingOkayamaPanelTime = 49.50f;
-    float switchModelTime = 53.50f;
+    float jumpingOkayamaPanelTime = 54.00f;
+    float switchModelTime = 57.50f;  // 53.5+4
+    float textStartTime = 41.50f;  // 53.5+4
 
     bool istunnel_B_ON_Flag = false;
     string isJump_AnimationFlag = "Jump";
-//    string isEscape_AnimationFlag = "isEscape";
     string isArrived_AnimationFlag = "isArrived";
     string isZooming_AnimationFlag = "isZooming";
     string isFinal_AnimationFlag = "isFinal";
@@ -80,7 +78,7 @@ public class MyGameManager : MonoBehaviour
 //        fadeOut.SetActive(false);
 //        endScreenColor = endSlide.GetComponent<MeshRenderer>();
 //        endSlide.SetActive(false);
-//        selfFader.SetActive(true);  // ON‚µ–Y‚ê–h~FƒJƒƒ‰ˆÊ’u•ÏX‚É‚æ‚èPositionÄ’²®•K—v
+        selfFader.SetActive(true);  // ON‚µ–Y‚ê–h~FƒJƒƒ‰ˆÊ’u•ÏX‚É‚æ‚èPositionÄ’²®•K—v
     }
 
     
@@ -93,7 +91,7 @@ public class MyGameManager : MonoBehaviour
             part_CountDown.SetActive(false);
             part_Title.SetActive(true);
         }
-        else if (exitCountDownTime + 5.0f < time && time < 82.0f)
+        else if (exitCountDownTime + 5.0f < time && time < 95.0f)
         {
             part_Title.SetActive(false);
             if (jumpingOkayamaPanelTime < time)
@@ -103,45 +101,40 @@ public class MyGameManager : MonoBehaviour
             SwitchModels();
             TimingUIProcess();
         }
-        else if(82.00f < time) // 85.0 •bˆÈã
+        else if(95.00f < time) // 85.0 •bˆÈã
         {
-//            shachoAnimator.SetBool(isEscape_AnimationFlag, true);
-
-            // 106.0f ‚Å‚¨‚µ‚Ü‚¢
-            if (103.00f < time)
+            if (116.00f < time)  // 103.0+13
             {
-//                fadeOut.SetActive(true);
                 cameraAnimator.SetBool("isFadeOut", true);
             }
-            else if (98.00f < time)
+            else if (111.00f < time)  // 98.0+13
             {
                 cameraAnimator.SetBool("isEnd", true);
                 mainBGM.volume -= Time.deltaTime * 0.2f;
             }
-            else if (94.00f < time)
+            else if (107.00f < time)  // 94.0+13
             {
                 cameraAnimator.SetBool(isFinal_AnimationFlag, true);
             }
-            else if (91.50f < time)
+            else if (104.50f < time)  // 91.5+13
             {
                 shachoComment001.SetActive(false);
                 shachoComment002.SetActive(true);
                 shachoVoice002.SetActive(true);
             }
-            else if (88.50f < time)
+            else if (101.50f < time)  //88.5+13
             {
                 shachoComment001.SetActive(true);
                 shachoVoice001.SetActive(true);
             }
-            else if (86.50f < time)
+            else if (99.50f < time)  // 86.5+13
             {
                 cameraAnimator.SetBool(isZooming_AnimationFlag, true);
             }
-            else if (84.50f < time)
+            else if (97.50f < time)  // 84.5+13
             {
                 mainGuide.SetActive(false);
                 trainSE.volume = 0.0f;
-//                shachoWithTrain.SetActive(false);
                 cameraAnimator.SetBool(isArrived_AnimationFlag, true);
             }
             /*
@@ -176,14 +169,13 @@ public class MyGameManager : MonoBehaviour
         if (exitCountDownTime < time)  // 35.20f
         {
             train.SetActive(true);
-//            presidentVoice.SetActive(true);
             part_CountDown.SetActive(false);
 
-            if (switchModelTime <= time)  // 53.50f
+            if (switchModelTime <= time)  // 57.50f
             {
                 seto_Bridge.SetActive(false);
 
-                if (switchModelTime + 6.00f <= time) // 59.50f
+                if (switchModelTime + 6.00f <= time) // 63.50f
                 {
                     if (!istunnel_B_ON_Flag)
                     {
@@ -191,17 +183,17 @@ public class MyGameManager : MonoBehaviour
                         istunnel_B_ON_Flag = true;
                     }
 
-                    if (switchModelTime + 8.00f <= time)  // 61.50f
+                    if (switchModelTime + 11.00f <= time)  // 68.50f
                     {
                         tunnel_A.SetActive(false);
 
-                        if (switchModelTime + 9.50f <= time)  // 63.00f
+                        if (switchModelTime + 13.50f <= time)  // 71.00f
                         {
                             sus_Kyoto.SetActive(true);
 
-                            if (time < switchModelTime + 18.65f)  // 72.15f
+                            if (time < switchModelTime + 25.50f)  // 84.00f
                             {
-                                if (switchModelTime + 14.30f < time)  // 67.80f
+                                if (switchModelTime + 17.30f < time)  // 74.80f
                                 {
                                     tunnel_B.SetActive(false);
                                     telsaHall.SetActive(true);
@@ -212,45 +204,43 @@ public class MyGameManager : MonoBehaviour
                                 sus_Kyoto.SetActive(false);
                             }
                         }
-
                     }
                 }
             }
         }
-
     }
 
     public void TimingUIProcess()
     {
-        if (exitCountDownTime <= time && time < 40.00f)
+        if (exitCountDownTime <= time && time < textStartTime)  // tST_41.50
         {
             DisplayTexts(0);
         }
-        else if (40.00f <= time && time < 45.00f)
+        else if (textStartTime <= time && time < textStartTime + 7.50f)  // 49.00f
         {
             DisplayTexts(1);
         }
-        else if (45.00f <= time && time < 50.00f)
+        else if (textStartTime + 7.50f <= time && time < textStartTime + 15.00f)  // 56.50f
         {
             DisplayTexts(2);
         }
-        else if (50.00f <= time && time < 57.00f)
+        else if (textStartTime + 15.00f <= time && time < textStartTime + 25.00f)  // 66.50f
         {
             DisplayTexts(3);
         }
-        else if (57.00f <= time && time < 64.00f)
+        else if (textStartTime + 25.00f <= time && time < textStartTime + 32.00f)  // 73.50
         {
             DisplayTexts(4);
         }
-        else if (64.00f <= time && time < 71.00f)
+        else if (textStartTime + 32.00f <= time && time < textStartTime + 39.00f)  // 80.50f
         {
             DisplayTexts(5);
         }
-        else if (71.00f <= time && time < 78.00f)
+        else if (textStartTime + 39.00f <= time && time < textStartTime + 47.00f)  // 88.50f
         {
             DisplayTexts(6);
         }
-        else if (78.00f <= time && time < 85.00f)
+        else if (textStartTime + 47.00f <= time && time < textStartTime + 54.00f)  // 96.50f
         {
             DisplayTexts(7);
         }
