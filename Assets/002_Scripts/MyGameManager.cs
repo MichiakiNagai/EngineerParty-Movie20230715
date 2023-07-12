@@ -37,6 +37,10 @@ public class MyGameManager : MonoBehaviour
 //    public GameObject shachoWithTrain;
     public GameObject selfFader;
     public GameObject mainGuide;
+    public GameObject shachoComment001;
+    public GameObject shachoComment002;
+    public GameObject shachoVoice001;
+    public GameObject shachoVoice002;
     public Animator shachoAnimator;
     public Animator cameraAnimator;
     public Animator markOkayamaAnimator;
@@ -68,6 +72,10 @@ public class MyGameManager : MonoBehaviour
         tunnel_B.SetActive(false);
         sus_Kyoto.SetActive(false);
         telsaHall.SetActive(false);
+        shachoComment001.SetActive(false);
+        shachoComment002.SetActive(false);
+        shachoVoice002.SetActive(false);
+        shachoVoice002.SetActive(false);
 //        endScreenColor = endSlide.GetComponent<MeshRenderer>();
 //        endSlide.SetActive(false);
 //        selfFader.SetActive(true);  // ONÇµñYÇÍñhé~ÅFÉJÉÅÉâà íuïœçXÇ…ÇÊÇËPositionçƒí≤êÆïKóv
@@ -95,9 +103,9 @@ public class MyGameManager : MonoBehaviour
         }
         else if(82.00f < time) // 85.0 ïbà»è„
         {
-            mainGuide.SetActive(false);
 //            shachoAnimator.SetBool(isEscape_AnimationFlag, true);
 
+            // 106.0f Ç≈Ç®ÇµÇ‹Ç¢
             if (100.00f < time)
             {
                 cameraAnimator.SetBool("isEnd", true);
@@ -107,12 +115,24 @@ public class MyGameManager : MonoBehaviour
             {
                 cameraAnimator.SetBool(isFinal_AnimationFlag, true);
             }
+            else if (91.50f < time)
+            {
+                shachoComment001.SetActive(false);
+                shachoComment002.SetActive(true);
+                shachoVoice002.SetActive(true);
+            }
+            else if (88.50f < time)
+            {
+                shachoComment001.SetActive(true);
+                shachoVoice001.SetActive(true);
+            }
             else if (86.50f < time)
             {
                 cameraAnimator.SetBool(isZooming_AnimationFlag, true);
             }
             else if (84.50f < time)
             {
+                mainGuide.SetActive(false);
                 trainSE.volume = 0.0f;
 //                shachoWithTrain.SetActive(false);
                 cameraAnimator.SetBool(isArrived_AnimationFlag, true);
