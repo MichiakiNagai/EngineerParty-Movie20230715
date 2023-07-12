@@ -34,25 +34,24 @@ public class MyGameManager : MonoBehaviour
     #endregion PartObj
     public GameObject[] textList;
 
-    public GameObject shachoWithTrain;
+//    public GameObject shachoWithTrain;
     public GameObject selfFader;
-    public GameObject worldCanvas;
+    public GameObject mainGuide;
     public Animator shachoAnimator;
     public Animator cameraAnimator;
     public Animator markOkayamaAnimator;
-    public AudioSource MainTrainSE;
-    public AudioSource bridgeSE;
+    public AudioSource trainSE;
+    public AudioSource mainBGM;
 
     public float time = -10.0f;
 
     float exitCountDownTime = 30.20f;  // è]óàtime(25.20f) ÇÊÇË +5.0f ÇµÇΩ
     float jumpingOkayamaPanelTime = 49.50f;
     float switchModelTime = 53.50f;
-    int text_i = 0;
 
     bool istunnel_B_ON_Flag = false;
     string isJump_AnimationFlag = "Jump";
-    string isEscape_AnimationFlag = "isEscape";
+//    string isEscape_AnimationFlag = "isEscape";
     string isArrived_AnimationFlag = "isArrived";
     string isZooming_AnimationFlag = "isZooming";
     string isFinal_AnimationFlag = "isFinal";
@@ -69,7 +68,8 @@ public class MyGameManager : MonoBehaviour
         tunnel_B.SetActive(false);
         sus_Kyoto.SetActive(false);
         telsaHall.SetActive(false);
-
+//        endScreenColor = endSlide.GetComponent<MeshRenderer>();
+//        endSlide.SetActive(false);
 //        selfFader.SetActive(true);  // ONÇµñYÇÍñhé~ÅFÉJÉÅÉâà íuïœçXÇ…ÇÊÇËPositionçƒí≤êÆïKóv
     }
 
@@ -83,7 +83,7 @@ public class MyGameManager : MonoBehaviour
             part_CountDown.SetActive(false);
             part_Title.SetActive(true);
         }
-        else if (exitCountDownTime + 5.0f < time && time < 85.0f)
+        else if (exitCountDownTime + 5.0f < time && time < 82.0f)
         {
             part_Title.SetActive(false);
             if (jumpingOkayamaPanelTime < time)
@@ -93,22 +93,28 @@ public class MyGameManager : MonoBehaviour
             SwitchModels();
             TimingUIProcess();
         }
-        else if(85.00f < time) // 85.0 ïbà»è„
+        else if(82.00f < time) // 85.0 ïbà»è„
         {
-            worldCanvas.SetActive(false);
-            shachoAnimator.SetBool(isEscape_AnimationFlag, true);
+            mainGuide.SetActive(false);
+//            shachoAnimator.SetBool(isEscape_AnimationFlag, true);
 
-            if (94.00f < time)
+            if (100.00f < time)
+            {
+                cameraAnimator.SetBool("isEnd", true);
+                mainBGM.volume -= Time.deltaTime * 0.1f;
+            }
+            else if (94.00f < time)
             {
                 cameraAnimator.SetBool(isFinal_AnimationFlag, true);
             }
-            else if (90.00f < time)
+            else if (86.50f < time)
             {
                 cameraAnimator.SetBool(isZooming_AnimationFlag, true);
             }
-            else if (87.00f < time)
+            else if (84.50f < time)
             {
-                shachoWithTrain.SetActive(false);
+                trainSE.volume = 0.0f;
+//                shachoWithTrain.SetActive(false);
                 cameraAnimator.SetBool(isArrived_AnimationFlag, true);
             }
             /*
@@ -166,7 +172,7 @@ public class MyGameManager : MonoBehaviour
                         {
                             sus_Kyoto.SetActive(true);
 
-                            if (time < switchModelTime + 26.50f)  // 80.00f
+                            if (time < switchModelTime + 18.65f)  // 72.15f
                             {
                                 if (switchModelTime + 14.30f < time)  // 67.80f
                                 {
@@ -189,15 +195,15 @@ public class MyGameManager : MonoBehaviour
 
     public void TimingUIProcess()
     {
-        if (exitCountDownTime <= time && time < 37.00f)
+        if (exitCountDownTime <= time && time < 40.00f)
         {
             DisplayTexts(0);
         }
-        else if (37.00f <= time && time < 43.00f)
+        else if (40.00f <= time && time < 45.00f)
         {
             DisplayTexts(1);
         }
-        else if (43.00f <= time && time < 50.00f)
+        else if (45.00f <= time && time < 50.00f)
         {
             DisplayTexts(2);
         }
